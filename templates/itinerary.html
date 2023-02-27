@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Travel Itinerary</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #f5f5f5;
+		}
+
+		.container {
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+
+		.card {
+			margin-top: 20px;
+			border: none;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+
+		h1 {
+			margin-bottom: 30px;
+			font-weight: bold;
+			color: #6c757d;
+		}
+
+		.itinerary {
+			font-size: 20px;
+			line-height: 1.5;
+		}
+
+		.itinerary h2 {
+			font-size: 24px;
+			margin-top: 40px;
+			margin-bottom: 20px;
+			font-weight: bold;
+			color: #6c757d;
+		}
+
+		.itinerary h3 {
+			font-size: 20px;
+			margin-top: 30px;
+			margin-bottom: 10px;
+			font-weight: bold;
+			color: #6c757d;
+		}
+
+		.itinerary p {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Travel Itinerary</h1>
+		<div class="card">
+			<div class="card-body itinerary">
+				{{ itinerary|safe }}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
