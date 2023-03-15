@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Load OpenAI API credentials
 #secrets = openai_secret_manager.get_secret("openai")
-api_key = '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'
+api_key =  # enter the API key
 openai.api_key = api_key
 
 
