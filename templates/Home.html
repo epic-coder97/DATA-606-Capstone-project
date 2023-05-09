@@ -5,68 +5,120 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<style>
-		body {
-			background-color: #f5f5f5;
-		}
-
-		.container {
-			margin-top: 50px;
-			margin-bottom: 50px;
-		}
-
-		h1, h2 {
-			margin-bottom: 30px;
-			font-weight: bold;
-			color: #6c757d;
-		}
-
-		form {
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-			padding: 20px;
-		}
-
-		input[type="text"], input[type="number"] {
-			padding: 10px;
-			font-size: 18px;
-			border: none;
-			border-radius: 5px;
-			background-color: #f5f5f5;
-			width: 100%;
-			margin-bottom: 20px;
-		}
-
-		input[type="submit"] {
-			padding: 10px 20px;
-			background-color: #007bff;
-			border: none;
-			border-radius: 5px;
-			color: #fff;
-			font-size: 18px;
-			cursor: pointer;
-			transition: background-color 0.3s ease;
-		}
-
-		input[type="submit"]:hover {
-			background-color: #0069d9;
-		}
+		body
+        {
+            background-color: #031908;
+        }
+		.container
+        {
+            margin: 50px auto; max-width: 500px;
+        }
+		h1, h2
+        {
+            margin-bottom: 30px; font-weight: bold; color: #6c757d; text-align: center;
+        }
+		form
+        {
+            background-color: #09312c;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            padding: 20px;
+        }
+		input[type="text"], input[type="number"] { padding: 12px; font-size: 16px; border: none; border-radius: 3px; background-color: #97dbcc; width: 100%; margin-bottom: 15px; }
+		input[type="submit"] { padding: 10px 20px; background-color: #007bff; border: none; border-radius: 3px; color: #fff; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease; }
+		input[type="submit"]:hover { background-color: #0069d9; }
 	</style>
 </head>
 <body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="{{ url_for('about') }}">TripWhiz</a>
+	  <!-- Toggler/collapsible Button -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <!-- Navbar links -->
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{ url_for('index') }}">Generate</a>
+	      </li>
+{#             <li class="nav-item">#}
+{#	        <a class="nav-link" href="{{ url_for('reccomendation') }}">reccomendation</a>#}
+{#	      </li>#}
+	    </ul>
+	  </div>
+	</nav>
 	<div class="container">
 		<h1>Travel Itinerary Generator</h1>
 		<h2>Enter your travel details below:</h2>
 		<form action="/itinerary" method="post">
-			<label for="start">Start Destination:</label>
-			<input type="text" id="start" name="start" placeholder="Enter start destination" required>
-			<label for="end">Final Destination:</label>
-			<input type="text" id="end" name="end" placeholder="Enter final destination" required>
-			<label for="days">Number of Days:</label>
-			<input type="number" id="days" name="days" placeholder="Enter number of days" min="1" max="30" required>
+			<input type="text" id="start" name="start" placeholder="Start Destination" required>
+			<input type="text" id="end" name="end" placeholder="Final Destination" required>
+			<input type="number" id="days" name="days" placeholder="Number of Days" min="1" max="30" required>
+			<input type="number" id="budget" name="budget" placeholder="Budget for Trip" min="200" max="100000" required>
 			<input type="submit" value="Generate Itinerary">
-
 		</form>
+		  <div id="map"></div>
+
 	</div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnT-MA1Zhi9Y85n2ukMW61YKfKXFpoyDY&libraries=places,directions"></script>
+	<script>
+    function initialize() {
+      // Create the autocomplete object.
+      var autocompleteStart = new google.maps.places.Autocomplete(
+        document.getElementById('start'), {
+          types: ['geocode']
+        });
+      var autocompleteEnd = new google.maps.places.Autocomplete(
+        document.getElementById('end'), {
+          types: ['geocode']
+        });
+      // Create the map.
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: 37.4419,
+          lng: -122.1419
+        },
+        zoom: 13
+      });
+      // Add a listener for the autocomplete events.
+      autocompleteStart.addListener('place_changed', function() {
+        // Get the place details from the autocomplete object.
+        var place = autocompleteStart.getPlace();
+        // Add a marker to the map for the start location.
+        var marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map
+        });
+        // Get the directions from the start location to the end location.
+        var request = {
+          origin: place.geometry.location,
+          destination: autocompleteEnd.getPlace() ? autocompleteEnd.getPlace().geometry.location : null,
+          travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            // Display the directions on the map.
+            var directionsRenderer = new google.maps.DirectionsRenderer({
+              map: map,
+              directions: response
+            });
+          }
+        });
+      });
+      autocompleteEnd.addListener('place_changed', function() {
+        // Get the place details from the autocomplete object.
+        var place = autocompleteEnd.getPlace();
+        // Add a marker to the map for the end location.
+        var marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map
+        });
+      });
+    }
+      google.maps.event.addDomListener(window, 'DOMContentLoaded', initialize);
+  </script>
 </body>
 </html>

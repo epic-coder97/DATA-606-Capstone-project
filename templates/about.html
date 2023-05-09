@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About Us - TripWhiz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- Custom CSS -->
+	<style type="text/css">
+		/* Style for About Us Page */
+		.container {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		.jumbotron {
+			background-color: #f8f9fa;
+			padding: 20px;
+		}
+
+		h1 {
+			font-weight: bold;
+			font-size: 3rem;
+			margin-bottom: 20px;
+			color: #212529;
+			text-align: center;
+		}
+
+		p {
+			font-size: 1.2rem;
+			line-height: 1.5;
+			margin-bottom: 20px;
+			color: #6c757d;
+			text-align: justify;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="{{ url_for('about') }}">TripWhiz</a>
+	  <!-- Toggler/collapsible Button -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <!-- Navbar links -->
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{ url_for('index') }}">Generate</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1>About Us</h1>
+			<p>We are a team of travel enthusiasts who love exploring new places and creating memorable experiences. Our mission is to help travelers plan their trips more efficiently and effectively with the help of our Travel Itinerary Generator tool powered by ChatGPT API.</p>
+			<p>With our tool, you can input your starting and final destinations, along with the number of days you plan to travel, and we'll generate a detailed itinerary that covers recommended activities, places to eat, accommodation options, transportation options, and any other relevant information to ensure a memorable trip.</p>
+			<p>Our team is committed to providing the best possible service to our users. We are constantly updating our tool to make it more user-friendly and efficient. We also value your feedback, so please feel free to reach out to us with any comments, questions, or suggestions.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

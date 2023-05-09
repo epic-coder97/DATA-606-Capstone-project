@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="{{ url_for('about') }}">TripWhiz</a>
+	  <!-- Toggler/collapsible Button -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <!-- Navbar links -->
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{ url_for('index') }}">Generate</a>
+	      </li>
+            </li>
+            <li class="nav-item">
+	        <a class="nav-link" href="{{ url_for('trip_itinerary') }}">Itinerary</a>
+	      </li>
+            <li class="nav-item">
+	        <a class="nav-link" href="{{ url_for('recomendation') }}">Flights</a>
+	      </li><li class="nav-item">
+	        <a class="nav-link" href="{{ url_for('recomendation_hotels') }}">Hotels</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+    <div class="container">
+
+    <h2> Hotels Recommendations</h2>
+        {% for card in cards %}
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                {{ card | safe }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
