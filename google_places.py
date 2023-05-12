@@ -1,5 +1,5 @@
 import requests
-api_key = 'AIzaSyDnT-MA1Zhi9Y85n2ukMW61YKfKXFpoyDY'
+api_key = 'AIzaSyDnT'
 
 import requests
 import json
