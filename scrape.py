@@ -1,4 +1,3 @@
-#https://dev.to/chukhraiartur/scrape-google-flights-with-python-4dln
 from playwright.sync_api import sync_playwright
 from selectolax.lexbor import LexborHTMLParser
 import json, time
