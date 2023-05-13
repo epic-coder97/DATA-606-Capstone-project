@@ -1,5 +1,8 @@
 # DATA-606-Capstone-project
 
+<iframe src="(https://what-is-tripwiz.streamlit.app/)" width="100%" height="500px"></iframe>
+
+
 The goal of this project is to create a personalized travel itinerary generation and recommendation system using Chat GPT and a hybrid recommendation engine based on real-time data of hotels and flights. By integrating Chat GPT, the system can provide a conversational interface that can understand and respond to natural language queries, allowing users to ask more specific and personalized questions about their travel preferences and receive more tailored recommendations in real-time.
 
 Features
