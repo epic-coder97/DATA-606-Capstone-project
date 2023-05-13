@@ -1,6 +1,6 @@
 # DATA-606-Capstone-project
 
-###Check out our blog here : [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://what-is-tripwiz.streamlit.app)
+### Check out our blog here : [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://what-is-tripwiz.streamlit.app)
 
 
 
